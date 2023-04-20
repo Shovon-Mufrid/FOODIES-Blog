@@ -1,0 +1,34 @@
+{% extends 'layouts/base.html' %}
+
+
+{% load crispy_forms_tags %}
+{% block title_block %} FOODIES - Write Your Blog {% endblock %}
+{% block body_block %}
+{% load static %}
+<script type="text/javascript" src="{% static "ckeditor/ckeditor-init.js" %}"></script>
+<script type="text/javascript" src="{% static "ckeditor/ckeditor/ckeditor.js" %}"></script>
+<section class="mb-30px">
+    <div class="container">
+<div class="p-3 m-auto">
+<h2>Write Your Blog Here</h2>
+<form action="" method="POST" enctype="multipart/form-data">
+    {{ form|crispy }}
+    {% csrf_token %}
+    <br>
+    <button type="submit" class="btn btn-success">Create Your Blog</button>
+</form>
+</div>
+</div>
+</section>
+
+
+
+
+
+
+
+
+
+
+{% endblock body_block %}
+        

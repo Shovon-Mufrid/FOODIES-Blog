@@ -1,0 +1,42 @@
+{% extends 'layouts/base.html' %}
+
+{% block title_block %}
+    Profile
+{% endblock title_block %}
+{% block body_block %}
+<section class="mb-30px">
+    <div class="container">
+<!-- user_profile from model.py related name -->
+<div class="m-auto">
+
+<h2>Your Profile</h2>
+{% if user.user_profile  %}
+<img src="/media/{{user.user_profile.profile_pic}}" class="rounded-circle" width="100px" alt="">
+<br><br>
+<a href="{% url 'Login_App:picture_change' %}" class="btn btn-primary btn-sm">Change Profile Picture</a>
+{% else %}
+
+<img src="/media/profile_image/default.png" class="rounded-circle" width="150px" alt="">
+<br><br>
+<a href="{% url 'Login_App:add_picture' %}" class="btn btn-primary btn-sm">Change Profile Picture</a>
+{% endif %}
+<br> <br>
+    <p>Username: {{ user.username }} </p>
+    <p>Email: {{ user.email }} </p>
+    <p>Name: {{ user.first_name }} {{ user.last_name }}</p>
+    <br>
+    <a href="{% url 'Login_App:change' %}" class="btn btn-info">Change Profile info</a>
+    <a href="{% url 'Login_App:pass_change' %}" class="btn btn-warning">Change Password</a>
+
+</div>
+</div>
+</section>
+
+
+
+
+
+
+{% endblock body_block %}
+    
+    

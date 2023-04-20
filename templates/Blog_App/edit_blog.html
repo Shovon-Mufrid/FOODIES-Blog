@@ -1,0 +1,24 @@
+{% extends 'layouts/base.html' %}
+{% load crispy_forms_tags %}
+{% block title_block %} FOODIES - EDIT {% endblock %}
+{% block body_block %}
+
+<section class="mb-30px">
+    <div class="container">
+{% if blog.author == user    %}   
+
+<form method="POST">
+{{form|crispy}}
+{% csrf_token %}
+<button type="submit" class="btn btn-sm btn-danger" > Update </button>
+{% else %}
+<p>You Are Not Allowed To View This Page. 404</p>
+</form>
+{% endif %}
+</div>
+</section>
+
+
+
+{% endblock body_block %}
+        

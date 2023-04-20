@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <!-- <title>Sensive Blog - Home</title> -->
+	<link rel="icon" href="img/Fevicon.png" type="image/png">
+
+  <link rel="stylesheet" href="{% static 'assets/vendors/bootstrap/bootstrap.min.css' %}">
+  <link rel="stylesheet" href="{% static 'assets/vendors/fontawesome/css/all.min.css' %}">
+  <link rel="stylesheet" href="{% static 'assets/vendors/themify-icons/themify-icons.css' %}">
+  <link rel="stylesheet" href="{% static 'assets/vendors/linericon/style.css' %}">
+  <link rel="stylesheet" href="{% static 'assets/vendors/owl-carousel/owl.theme.default.min.css' %}">
+  <link rel="stylesheet" href="{% static 'assets/vendors/owl-carousel/owl.carousel.min.css' %}">
+  <script type="text/javascript" src="{% static "ckeditor/ckeditor-init.js" %}"></script>
+  <script type="text/javascript" src="{% static "ckeditor/ckeditor/ckeditor.js" %}"></script>
+  <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+  <title>
+        
+    {% block title_block %}
+       FOODIES - Home
+    {% endblock %}
+        
+</title>
+
+
+{% block css_block %}
+  
+{% endblock css_block %}
+  
+</head>
+
+<body>
+    
+    {% include 'layouts/navbar.html' %}
+    {% block body_block %}
+        
+    {% endblock body_block %}
+    {% include 'layouts/footer.html' %}    
+
+
+
+
+
+    <script src="{% static 'assets/vendors/jquery/jquery-3.2.1.min.js' %}"></script>
+    <script src="{% static 'assets/vendors/bootstrap/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'assets/vendors/owl-carousel/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'assets/js/jquery.ajaxchimp.min.js' %}"></script>
+    <script src="{% static 'assets/js/mail-script.js' %}"></script>
+    <script src="{% static 'assets/js/main.js' %}"></script>
+  </body>
+</html>

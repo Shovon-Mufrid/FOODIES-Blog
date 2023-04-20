@@ -1,0 +1,121 @@
+A
+1. Create Project
+2. Create Virtual environment-activate
+3. Install Django
+4. Install pillow
+5. install ckeditor
+5. install crispy_forms
+5. Install APP
+6. ADD TEMPLATES,STATIC, MEDIA and configure settings
+7. Create Models for Login app>>>> it will be one to one relation
+8. Create Models for Blog app>>>> it will be foreign key>> verbose_name-> label // auto_now_add=True -> auto time will be set by new entry, user cant't change // auto_now=True -> everytime it is update, it will be updated everytime, but auto_now_add will be fixed // Slug -> title based link with number.
+8. django-crispy-forms
+9. register models in admin.py
+10. Create super user>>> smufrid / s********7
+11. make urls in Project
+12. make views for project folder >>>> views.py> from . means current directory
+13. make url for blog  and login
+14. create base.html, url, views, html files
+15. project>views>httpredirection to blog_app>blog_list html
+C
+16. Make a form by using django documentation, use it on Login/views.py>>> UserCreationForm
+17. signup form create in views>html>url
+18. INSTALL a form>>>> pip install django-crispy-forms  >>> settings.py>INSTALLED_APP >> add crispy_forms // CRISPY_TEMPLATE_PACK = 'uni-form' [#bootstrap, bootstrap3, bootstrap4,bootstrap5, uni-form] // signup.html>> {% load crispy_forms_tags %}
+
+D
+19. views.py>>>signin>>>> authentication module 
+20. sign in uses username which is from built in model by django
+21. signin>>>> authentication function need>>> from django.contrib.auth import login,authenticate,logout
+22. logout function>>> from django.contrib.auth.decorators import login_required
+23. settings.py> # Login_url{if login credintial is not satisfied in url}
+LOGIN_URL = '/account/signin/'
+
+E
+24. add a custom form in forms.py to add other fields.
+25. views.py, change to custom form
+26. views.py>>> add user profile,  // UserProfileChange // change password
+
+F.
+27. Media File> change url.py of main project>>> module, add urlpattern under
+28. {% if user.user_profile  %} >>>>> model.py> user related name>which calls model name
+<img src="/mdeia/{{user.user_profile.profile_prelated namec}}" alt="">model.py> user> related name>which calls model name> calls profile pic of that model
+29. take user as main to chnage profile pic>>>> user_obj(view) & user(model) must have same info // request user and object user are same
+        form = ProfilePic(request.POST, request.FILES)
+30. change pro pic>>>> o change an existing value, instance is added
+31. to remove additional picture in media>> pip install django-cleanup // settings.py>install_app>>    'django_cleanup.apps.CleanupConfig'
+
+G.
+Dropdown
+
+h.
+Blog template create
+blog>views.py> add class based views
+
+function-based views use login_required
+class-based views use mixin
+
+views.py>>> form_valid works on class to valid the forms
+        self is used to call any variable inside class
+        import uuid #unique id generate
+
+
+cmd> py 
+>>>import uuid
+>>> title = "Russia On War"  
+>>> slug = title.replace(' ', '-') + "-" + str(uuid.uuid4())
+>>> print(slug)
+
+i.
+1.Time change for blog>>> settings> TIME_ZONE = 'Asia/Dhaka'
+2.Sorting Blog List >>>   queryset = Blog.objects.order_by('-publish_date') // - is for descending // + for ascending or dont use it at all
+OR, model>> class Meta:
+                ordering = ['-publish_date',]
+3. Blog content summerize>>> templatetags filter create>>add in blog_list                 
+4. urls.py>>> slug:slug>slug data type add slug 
+5. blog_details.html>>>             {% for comment in blog.blog_comment  %}   // blog comment from model.py>Comment
+
+
+j. CKEDITOR>>>>
+pip install django-ckeditor
+2. settings.py>>>Install_app>>> add ckedttor, ckeditor_upload 
+3. settings.py>>>
+STATIC_URL = 'static/'
+STATIC_ROOT = BASE_DIR / 'static'
+# STATICFILES_DIRS = [STATIC_DIR,]
+
+CKEDITOR_BASEPATH = STATIC_ROOT / 'static/ckeditor/ckeditor/'
+# MEDIA
+MEDIA_URL = 'media/'
+MEDIA_ROOT = MEDIA_DIR
+
+CKEDITOR_UPLOAD_PATH = 'uploads/'
+
+4. use ckeditor.fields import RichTextEdit
+5. run>>> py manage.py collectstatic
+6. migrate
+7. load static
+
+K.
+USER BLOG SHOWING:
+1. views.py> templateview Model
+2. use related name to use blog [post_auther]
+
+L.
+Edit BLOG:
+reverse_lazy > wont redirect unless not updated 
+kwargs={'slug':self.object.slug} >> self from function, object from current profile blog, slug from related slug
+
+
+
+
+ADMIN:
+shovon
+shovon123
+
+
+smufrid
+iloveblogging
+
+mshovon
+ghosteye123
+

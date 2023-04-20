@@ -1,0 +1,37 @@
+{% extends 'layouts/base.html' %} 
+{% load custom_filters %}
+{% block title_block %} FOODIES - {{user}}'s Blogs {% endblock title_block %} 
+
+{% block body_block %}
+
+<section class="mb-30px">
+  <div class="container">
+    {% for blog in user.post_author.all %}
+    <h3>{{blog.blog_title}}</h3>
+    <h6>{{blog.publish_date}}</h6>
+    <div class="row">
+      <div class="col-sm-4">
+        <img
+          src="/media/{{blog.blog_image}}"
+          width="50%"
+          alt="{{blog.blog_title}}"
+        />
+      </div>
+      <div class="col-sm-8">
+        <p>
+          {{blog.blog_content|striptags|range_filter|linebreaks}}
+          <a class="button mr-3" href="{% url 'Blog_App:blog_details' slug=blog.slug %}"
+            >Read More</a>
+            <a class="button" href="{% url 'Blog_App:edit_blog' slug=blog.slug %}">EDIT</a>
+        </p>
+      </div>
+    </div>
+    <hr>
+    <!-- <div>
+      <a class="button" href="{% url 'Blog_App:edit_blog' slug=blog.slug %}">EDIT</a>
+    </div> -->
+    {% endfor %} 
+  </div>
+</section>
+
+{% endblock body_block %}

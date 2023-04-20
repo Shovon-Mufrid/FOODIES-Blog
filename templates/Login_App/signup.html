@@ -1,0 +1,59 @@
+{% extends 'layouts/base.html' %}
+{% load crispy_forms_tags %}
+{% block title_block %} Create New Account {% endblock %}    
+
+{% block css_block %}
+   <style>
+    .sign_up{
+        width: 550px;
+        margin: 50px auto 2px;
+        border: 3px solid rgba(21, 94, 118, 0.806);
+        padding: 40px;
+    }
+    .sign_up form button{
+        width: 100%;
+        background-color: rgba(21, 94, 118, 0.806);
+        color: azure;
+    }
+    .sign_up h3{
+        text-align: center;
+        color: rgba(21, 94, 118, 0.806);
+        padding-bottom: 20px;
+        text-decoration: underline;
+    }
+    .log_in{
+        width: 550px;
+        /* padding: 40px; */
+        border: 2px solid #ccc;
+        text-align: center;
+        margin: 20px auto;
+    }
+
+   </style> 
+{% endblock css_block %}
+
+
+{% block body_block %}
+
+{% if registered %}
+<div class="alert alert-success">
+    Account Created Successfully! <a href="{% url 'Login_App:signin' %}">LogIn Here</a>
+</div>
+{% else %}
+<div class="sign_up">
+    <h3>Create New Account</h3>   
+    <form method="POST">
+        {{form|crispy}}
+        {% csrf_token %}
+        <button type="submit" class="btn btn-primary btn-sm"> Sign Up </button>
+    </form>
+</div>
+<br>
+<div class="log_in">
+    <p>Already Have An Account <a href="{% url 'Login_App:signin' %}">Login Here</a></p>
+</div>
+
+{% endif %}
+
+{% endblock %}
+    

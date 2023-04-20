@@ -1,0 +1,223 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+{% load custom_filters %}
+
+
+{% block body_block %}
+<main class="site-main">
+    <!--================Hero Banner start =================-->  
+    <section class="mb-30px">
+      <!-- <div class="container"> -->
+      <div class="#">
+        <div class="hero-banner">
+          <div class="hero-banner__content">
+            <h3>Yummy & Tasty</h3>
+            <h1>Amazing Eateries on Earth</h1>
+            <!-- <h4>December 12, 2018</h4> -->
+          </div>
+        </div>
+      </div>
+    </section>
+    <!--================Hero Banner end =================-->  
+
+    <!--================ Blog slider start =================-->  
+    <section>
+      <div class="container">
+        <div class="owl-carousel owl-theme blog-slider">
+          {% for blog in blogs %}
+          <div class="card blog__slide text-center">
+            <div class="blog__slide__img">
+              <img class="card-img rounded-0" src="/media/{{blog.blog_image}}" alt="{{blog.blog_title}}">
+            </div>
+            <div class="blog__slide__content">
+              <a class="blog__slide__label" href="{% url 'Blog_App:blog_details' slug=blog.slug %}">New Arrival</a>
+              <h3><a href="{% url 'Blog_App:blog_details' slug=blog.slug %}"> {{ blog.blog_title }} </a></h3>
+              <p>{{ blog.publish_date }}</p>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </section>
+    <!--================ Blog slider end =================-->  
+
+    <!--================ Start Blog Post Area =================-->
+    <section class="blog-post-area section-margin mt-4">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8"> 
+            {% for blog in blogs %}
+            <div class="single-recent-blog-post">
+              <div class="thumb">
+                <img class="img-fluid" src="/media/{{blog.blog_image}}" alt="{{blog.blog_title}}">
+                <ul class="thumb-info">
+                  <li><a href="#"><i class="ti-user"></i>@{{blog.author}}</a></li>
+                  <li><a href="#"><i class="ti-notepad"></i>{{ blog.publish_date }}</a></li>
+                  <li><a href="#"><i class="ti-themify-favicon"></i>2 Comments</a></li>
+                </ul>
+              </div>
+              <div class="details mt-20">
+                <a href="{% url 'Blog_App:blog_details' slug=blog.slug %}">
+                  <h3>{{ blog.blog_title }}</h3>
+                </a>
+                <p class="tag-list-inline">Tag: <a href="#">Food</a>, <a href="#">Recipe</a>, <a href="#">Vlog</a>, <a href="#">Making-Process</a></p>
+                <p>{{blog.blog_content|striptags|range_filter|linebreaks}}</p>
+                <a class="button" href="{% url 'Blog_App:blog_details' slug=blog.slug %}">Read More <i class="ti-arrow-right"></i></a>
+              </div>
+            </div>
+            {% endfor %}
+                
+            
+            
+
+            <div class="row">
+              <div class="col-lg-12">
+                  <nav class="blog-pagination justify-content-center d-flex">
+                      <ul class="pagination">
+                          {% if blogs.has_previous %}
+                              <li class="page-item">
+                                  <a href="?page={{ blogs.previous_page_number }}" class="page-link" aria-label="Previous">
+                                      <span aria-hidden="true">
+                                          <i class="ti-angle-left"></i>
+                                      </span>
+                                  </a>
+                              </li>
+                          {% else %}
+                              <li class="page-item disabled">
+                                  <a href="#" class="page-link" aria-label="Previous">
+                                      <span aria-hidden="true">
+                                          <i class="ti-angle-left"></i>
+                                      </span>
+                                  </a>
+                              </li>
+                          {% endif %}
+          
+                          {% for i in blogs.paginator.page_range %}
+                              {% if blogs.number == i %}
+                                  <li class="page-item active"><a href="?page={{ i }}" class="page-link">{{ i }}</a></li>
+                              {% else %}
+                                  <li class="page-item"><a href="?page={{ i }}" class="page-link">{{ i }}</a></li>
+                              {% endif %}
+                          {% endfor %}
+          
+                          {% if blogs.has_next %}
+                              <li class="page-item">
+                                  <a href="?page={{ blogs.next_page_number }}" class="page-link" aria-label="Next">
+                                      <span aria-hidden="true">
+                                          <i class="ti-angle-right"></i>
+                                      </span>
+                                  </a>
+                              </li>
+                          {% else %}
+                              <li class="page-item disabled">
+                                  <a href="#" class="page-link" aria-label="Next">
+                                      <span aria-hidden="true">
+                                          <i class="ti-angle-right"></i>
+                                      </span>
+                                  </a>
+                              </li>
+                          {% endif %}
+                      </ul>
+                  </nav>
+              </div>
+          </div>
+          
+
+
+
+
+
+
+          </div>
+
+          <!-- Start Blog Post Siddebar -->
+          <div class="col-lg-4 sidebar-widgets">
+              <div class="widget-wrap">
+                <div class="single-sidebar-widget newsletter-widget">
+                  <h4 class="single-sidebar-widget__title">Newsletter</h4>
+                  <div class="form-group mt-30">
+                    <div class="col-autos">
+                      <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="Enter email" onfocus="this.placeholder = ''"
+                        onblur="this.placeholder = 'Enter email'">
+                    </div>
+                  </div>
+                  <button class="bbtns d-block mt-20 w-100">Subcribe</button>
+                </div>
+
+
+                <div class="single-sidebar-widget post-category-widget">
+                  <h4 class="single-sidebar-widget__title">Catgory</h4>
+                  <ul class="cat-list mt-20">
+                    <li>
+                      <a href="#" class="d-flex justify-content-between">
+                        <p>Soup</p>
+                        <p>(03)</p>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#" class="d-flex justify-content-between">
+                        <p>Noodles</p>
+                        <p>(09)</p>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#" class="d-flex justify-content-between">
+                        <p>Rice</p>
+                        <p>(12)</p>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#" class="d-flex justify-content-between">
+                        <p>Shopping</p>
+                        <p>(02)</p>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#" class="d-flex justify-content-between">
+                        <p>Food</p>
+                        <p>(10)</p>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+
+                  <div class="single-sidebar-widget tag_cloud_widget">
+                    <h4 class="single-sidebar-widget__title">Popular Post</h4>
+                    <ul class="list">
+                      <li>
+                          <a href="#">Pancake</a>
+                      </li>
+                      <li>
+                          <a href="#">Grill</a>
+                      </li>
+                      <li>
+                          <a href="#">Drinks</a>
+                      </li>
+                      <li>
+                          <a href="#">Ramen</a>
+                      </li>
+                      <li>
+                          <a href="#">Sushi</a>
+                      </li>
+                      <li>
+                          <a href="#">Fried</a>
+                      </li>
+                      <li>
+                          <a href="#">Cabab</a>
+                      </li>
+                      <li>
+                          <a href="#">Saslik</a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          <!-- End Blog Post Siddebar -->
+        </div>
+    </section>
+    <!--================ End Blog Post Area =================-->
+  </main>
+    
+{% endblock body_block %}
+    

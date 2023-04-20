@@ -1,0 +1,59 @@
+{% extends 'layouts/base.html' %}
+{% load custom_filters %}
+{% block title_block %} FOODIES - Blog {% endblock %}
+{% block body_block %}
+<section class="mb-30px">
+    <div class="container">
+      <div class="hero-banner hero-banner--sm">
+        <div class="hero-banner__content">
+            <h1> List of blogs</h1>
+          <nav aria-label="breadcrumb" class="banner-breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item active" aria-current="page">Blog Page</li>
+            </ol>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+<section class="blog-post-area section-margin">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="row">                    
+                    {% for blog in blogs %}
+                    <div class="col-md-4">
+                        <div class="single-recent-blog-post card-view">
+                            <div class="thumb">
+                                <img class="card-img rounded-0" src="/media/{{blog.blog_image}}" alt="{{blog.blog_title}}" title="{{blog.blog_title}}">
+                                <ul class="thumb-info">
+                                    <li><a href="#"><i class="ti-user"></i><b>@{{blog.author}}</b> ({{ blog.publish_date }})</a></li>
+                                    <!-- <li><a href="#"><i class="ti-themify-favicon"></i>{{ blog.publish_date }}</a></li> -->
+                                </ul>
+                            </div>
+                            <div class="details mt-20">
+                                <a href="blog-single.html">
+                                <h3>{{ blog.blog_title }}</h3>
+                                </a>
+                                <p>{{blog.blog_content|striptags|range_filter|linebreaks}}</p>
+                                <a class="button" href="{% url 'Blog_App:blog_details' slug=blog.slug %}">Read More <i class="ti-arrow-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+
+{% endblock %}
+    
+    

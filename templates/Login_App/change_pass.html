@@ -1,0 +1,30 @@
+{% extends 'layouts/base.html' %}
+{% load crispy_forms_tags %}
+{% block title_block %}
+    Change Password
+{% endblock title_block %}
+
+
+{% block body_block %}
+<section class="mb-30px">
+<div class="container">   
+    <h2>Change Password</h2>
+    {% if changed %}
+    <div class="alert alert-success">Password changed successfully</div>
+    {% endif %}
+    <form  method="POST">
+        {{ form|crispy }}
+        {% csrf_token %}
+        <button type="submit" class="btn btn-primary">Update</button>
+
+    </form>
+</div>
+</section>
+
+
+
+
+
+{% endblock body_block %}
+    
+    
