@@ -17,7 +17,7 @@ SECRET_KEY = 'django-insecure-uxl+3mje7log*u_d3ql$%^51@l40q7zn_(#&p@z74nxvi6nh7d
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*',]
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -78,6 +78,18 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+### Python Anywhere
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#          'HOST': 'vlogspot.mysql.pythonanywhere-services.com'
+#          'NAME': 'vlogspot$default'
+#          'PORT': 3306
+#          'USER': 'vlogspot'
+#          'PASSWORD': '$iHateMyLife@0%'
+#     }
+# }
 
 
 # Password validation
