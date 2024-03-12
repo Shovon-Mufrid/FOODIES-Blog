@@ -72,12 +72,12 @@ WSGI_APPLICATION = 'Blog_Project.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
 
 ### Python Anywhere
 # DATABASES = {
@@ -90,6 +90,17 @@ DATABASES = {
 #          'PASSWORD': '$iHateMyLife@0%'
 #     }
 # }
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'food-blog',
+        'HOST': "localhost",
+        'PORT': "5432",
+        'USER': "sadmin",
+        'PASSWORD': "sadmin123",
+    }
+}
 
 
 # Password validation
